@@ -25,16 +25,17 @@ function default.register_ores()
 		  },
 	})
 	
-	minetest.clear_registered_biomes()
-	  minetest.register_biome({
-	    name = "default:grassland",
-	    node_top = "default:dirt",
-	    depth_top = 1,
-	    node_filler = "default:dirt",
-	    depth_filler = 1,
-	    node_stone = "default:stone",
-	    y_min = -20,
-	    y_max = 31000,
-	    heat_point = 50,
-	    humidity_point = 50,
-	   })
+minetest.clear_registered_biomes()
+
+	minetest.register_biome({
+		name = "default:terrain",
+		node_top = "default:dirt",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 1,
+		node_stone = "default:stone",
+		y_min = -20,
+		y_max = 31000,
+		heat_point = 50,
+		humidity_point = 50,
+	})
