@@ -14,10 +14,10 @@ set(PROJECT_NAME_CAPITALIZED "MineDigger")
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 4)
 set(VERSION_PATCH 13)
-set(VERSION_EXTRA "" CACHE STRING "Stuff to append to version string")
+set(VERSION_EXTRA "Pre-Alpha" CACHE STRING "Stuff to append to version string")
 
 # Change to false for releases
-set(DEVELOPMENT_BUILD TRUE)
+set(DEVELOPMENT_BUILD FALSE)
 
 set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 if(VERSION_EXTRA)
@@ -26,7 +26,7 @@ elseif(DEVELOPMENT_BUILD)
 	set(VERSION_STRING "${VERSION_STRING}-dev")
 endif()
 
-message(STATUS "*** Will build version ${VERSION_STRING} ***")
+message(STATUS "*** You are about to build MineDigger ${VERSION_STRING} ***")
 
 
 # Configuration options

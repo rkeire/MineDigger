@@ -65,14 +65,14 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("keymap_camera_mode", "KEY_F7");
 	settings->setDefault("keymap_increase_viewing_range_min", "+");
 	settings->setDefault("keymap_decrease_viewing_range_min", "-");
-	settings->setDefault("enable_build_where_you_stand", "false" );
+	settings->setDefault("enable_build_where_you_stand", "true" );
 	settings->setDefault("3d_mode", "none");
 	settings->setDefault("3d_paralax_strength", "0.025");
 	settings->setDefault("aux1_descends", "false");
 	settings->setDefault("doubletap_jump", "false");
-	settings->setDefault("always_fly_fast", "true");
-	settings->setDefault("directional_colored_fog", "true");
-	settings->setDefault("tooltip_show_delay", "400");
+	settings->setDefault("always_fly_fast", "false");
+	settings->setDefault("directional_colored_fog", "false");
+	settings->setDefault("tooltip_show_delay", "300");
 
 	// Some (temporary) keys for debugging
 	settings->setDefault("keymap_print_debug_stacks", "KEY_KEY_P");
@@ -88,27 +88,27 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("show_debug", "true");
 	#endif
 
-	settings->setDefault("wanted_fps", "30");
-	settings->setDefault("fps_max", "60");
-	settings->setDefault("pause_fps_max", "20");
+	settings->setDefault("wanted_fps", "40");
+	settings->setDefault("fps_max", "40");
+	settings->setDefault("pause_fps_max", "40");
 	// A bit more than the server will send around the player, to make fog blend well
-	settings->setDefault("viewing_range_nodes_max", "240");
-	settings->setDefault("viewing_range_nodes_min", "35");
+	settings->setDefault("viewing_range_nodes_max", "60");
+	settings->setDefault("viewing_range_nodes_min", "60");
 	settings->setDefault("map_generation_limit", "31000");
-	settings->setDefault("screenW", "800");
-	settings->setDefault("screenH", "600");
+	settings->setDefault("screenW", "900");
+	settings->setDefault("screenH", "750");
 	settings->setDefault("fullscreen", "false");
 	settings->setDefault("fullscreen_bpp", "24");
 	settings->setDefault("fsaa", "0");
 	settings->setDefault("vsync", "false");
 	settings->setDefault("address", "");
 	settings->setDefault("random_input", "false");
-	settings->setDefault("client_unload_unused_data_timeout", "600");
+	settings->setDefault("client_unload_unused_data_timeout", "100");
 	settings->setDefault("client_mapblock_limit", "5000");
-	settings->setDefault("enable_fog", "true");
-	settings->setDefault("fov", "72");
+	settings->setDefault("enable_fog", "false");
+	settings->setDefault("fov", "75");
 	settings->setDefault("view_bobbing", "true");
-	settings->setDefault("new_style_water", "false");
+	settings->setDefault("new_style_water", "true");
 	settings->setDefault("leaves_style", "fancy");
 	settings->setDefault("connected_glass", "false");
 	settings->setDefault("smooth_lighting", "true");
@@ -122,16 +122,16 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("cinematic", "false");
 	settings->setDefault("camera_smoothing", "0");
 	settings->setDefault("cinematic_camera_smoothing", "0.7");
-	settings->setDefault("fast_move", "false");
+	settings->setDefault("fast_move", "true");
 	settings->setDefault("invert_mouse", "false");
 	settings->setDefault("enable_clouds", "true");
 	settings->setDefault("screenshot_path", ".");
-	settings->setDefault("view_bobbing_amount", "1.0");
-	settings->setDefault("fall_bobbing_amount", "0.0");
-	settings->setDefault("enable_3d_clouds", "true");
-	settings->setDefault("cloud_height", "120");
-	settings->setDefault("cloud_radius", "12");
-	settings->setDefault("menu_clouds", "true");
+	settings->setDefault("view_bobbing_amount", "0.8");
+	settings->setDefault("fall_bobbing_amount", "0.5");
+	settings->setDefault("enable_3d_clouds", "false");
+	settings->setDefault("cloud_height", "300");
+	settings->setDefault("cloud_radius", "26");
+	settings->setDefault("menu_clouds", "false");
 	settings->setDefault("opaque_water", "false");
 	settings->setDefault("console_color", "(0,0,0)");
 	settings->setDefault("console_alpha", "200");
@@ -180,11 +180,11 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("enable_mesh_cache", "false");
 
 	settings->setDefault("enable_minimap", "true");
-	settings->setDefault("minimap_shape_round", "true");
+	settings->setDefault("minimap_shape_round", "false");
 	settings->setDefault("minimap_double_scan_height", "true");
 
-	settings->setDefault("curl_timeout", "5000");
-	settings->setDefault("curl_parallel_limit", "8");
+	settings->setDefault("curl_timeout", "3000");
+	settings->setDefault("curl_parallel_limit", "16");
 	settings->setDefault("curl_file_download_timeout", "300000");
 	settings->setDefault("curl_verify_cert", "true");
 
