@@ -6,8 +6,8 @@ if(${CMAKE_VERSION} STREQUAL "2.8.2")
 endif()
 
 # This can be read from ${PROJECT_NAME} after project() is called
-project(minetest)
-set(PROJECT_NAME_CAPITALIZED "Minetest")
+project(MineDigger)
+set(PROJECT_NAME_CAPITALIZED "MineDigger")
 
 
 # Also remember to set PROTOCOL_VERSION in network/networkprotocol.h when releasing
@@ -149,13 +149,12 @@ endif()
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/builtin" DESTINATION "${SHAREDIR}")
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/client" DESTINATION "${SHAREDIR}")
-install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/games/minimal" DESTINATION "${SHAREDIR}/games")
-set(MINETEST_GAME_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/games/minetest_game")
+set(MINETEST_GAME_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/games/MineDiggerDefault")
 if(EXISTS ${MINETEST_GAME_SOURCE} AND IS_DIRECTORY ${MINETEST_GAME_SOURCE})
-	install(FILES ${MINETEST_GAME_SOURCE}/game.conf DESTINATION "${SHAREDIR}/games/minetest_game/")
-	install(FILES ${MINETEST_GAME_SOURCE}/README.txt DESTINATION "${SHAREDIR}/games/minetest_game/")
-	install(DIRECTORY ${MINETEST_GAME_SOURCE}/mods DESTINATION "${SHAREDIR}/games/minetest_game")
-	install(DIRECTORY ${MINETEST_GAME_SOURCE}/menu DESTINATION "${SHAREDIR}/games/minetest_game")
+	install(FILES ${MINETEST_GAME_SOURCE}/game.conf DESTINATION "${SHAREDIR}/games/MineDiggerDefault/")
+	install(FILES ${MINETEST_GAME_SOURCE}/README.txt DESTINATION "${SHAREDIR}/games/MineDiggerDefault/")
+	install(DIRECTORY ${MINETEST_GAME_SOURCE}/mods DESTINATION "${SHAREDIR}/games/MineDiggerDefault")
+	install(DIRECTORY ${MINETEST_GAME_SOURCE}/menu DESTINATION "${SHAREDIR}/games/MineDiggerDefault")
 endif()
 if(BUILD_CLIENT)
 	#install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/sounds/base/pack" DESTINATION "${SHAREDIR}/sounds/base")
@@ -195,12 +194,12 @@ add_subdirectory(src)
 
 # CPack
 
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "An InfiniMiner/Minecraft inspired game")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MineDigger is a voxel game based on Minetest from celeron55. It aims to be a fun game and lightweight.")
 set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
-set(CPACK_PACKAGE_VENDOR "celeron55")
-set(CPACK_PACKAGE_CONTACT "Perttu Ahola <celeron55@gmail.com>")
+set(CPACK_PACKAGE_VENDOR "RegLnx - https://github.com/RegLnx/MineDigger")
+set(CPACK_PACKAGE_CONTACT "Megaf mmegaf at gmail dot com")
 
 if(WIN32)
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
@@ -221,17 +220,4 @@ else()
 endif()
 
 include(CPack)
-
-
-# Add a target to generate API documentation with Doxygen
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in
-			${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile @ONLY)
-	add_custom_target(doc
-		${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile
-		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc
-		COMMENT "Generating API documentation with Doxygen" VERBATIM
-	)
-endif()
 
