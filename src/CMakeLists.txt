@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-project(minetest)
+project(MineDigger)
 
 INCLUDE(CheckIncludeFiles)
 
@@ -55,27 +55,6 @@ if(NOT USE_CURL)
 	endif()
 endif()
 
-
-option(ENABLE_GETTEXT "Use GetText for internationalization" FALSE)
-set(USE_GETTEXT FALSE)
-
-if(ENABLE_GETTEXT)
-	find_package(GettextLib)
-	if(GETTEXT_FOUND)
-		if(WIN32)
-			message(STATUS "GetText library: ${GETTEXT_LIBRARY}")
-			message(STATUS "GetText DLL: ${GETTEXT_DLL}")
-			message(STATUS "GetText iconv DLL: ${GETTEXT_ICONV_DLL}")
-		endif()
-		set(USE_GETTEXT TRUE)
-		message(STATUS "GetText enabled; locales found: ${GETTEXT_AVAILABLE_LOCALES}")
-	endif(GETTEXT_FOUND)
-else()
-	mark_as_advanced(GETTEXT_ICONV_DLL GETTEXT_INCLUDE_DIR GETTEXT_LIBRARY GETTEXT_MSGFMT)
-	message(STATUS "GetText disabled.")
-endif()
-
-
 option(ENABLE_SOUND "Enable sound" TRUE)
 set(USE_SOUND FALSE)
 
@@ -122,7 +101,7 @@ endif()
 
 
 option(ENABLE_FREETYPE "Enable FreeType2 (TrueType fonts and basic unicode support)" TRUE)
-set(USE_FREETYPE FALSE)
+set(USE_FREETYPE TRUE)
 
 if(ENABLE_FREETYPE)
 ##
@@ -160,7 +139,7 @@ find_package(Lua REQUIRED)
 
 find_package(GMP REQUIRED)
 
-option(ENABLE_LEVELDB "Enable LevelDB backend" TRUE)
+option(ENABLE_LEVELDB "Enable LevelDB backend" FALSE)
 set(USE_LEVELDB FALSE)
 
 if(ENABLE_LEVELDB)
@@ -176,7 +155,7 @@ if(ENABLE_LEVELDB)
 endif(ENABLE_LEVELDB)
 
 
-OPTION(ENABLE_REDIS "Enable Redis backend" TRUE)
+OPTION(ENABLE_REDIS "Enable Redis backend" FALSE)
 set(USE_REDIS FALSE)
 
 if(ENABLE_REDIS)

@@ -88,9 +88,9 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("show_debug", "true");
 	#endif
 
-	settings->setDefault("wanted_fps", "40");
-	settings->setDefault("fps_max", "40");
-	settings->setDefault("pause_fps_max", "40");
+	settings->setDefault("wanted_fps", "30");
+	settings->setDefault("fps_max", "30");
+	settings->setDefault("pause_fps_max", "30");
 	// A bit more than the server will send around the player, to make fog blend well
 	settings->setDefault("viewing_range_nodes_max", "60");
 	settings->setDefault("viewing_range_nodes_min", "60");
@@ -104,11 +104,11 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("address", "");
 	settings->setDefault("random_input", "false");
 	settings->setDefault("client_unload_unused_data_timeout", "100");
-	settings->setDefault("client_mapblock_limit", "5000");
+	settings->setDefault("client_mapblock_limit", "2000");
 	settings->setDefault("enable_fog", "false");
 	settings->setDefault("fov", "75");
 	settings->setDefault("view_bobbing", "true");
-	settings->setDefault("new_style_water", "true");
+	settings->setDefault("new_style_water", "false");
 	settings->setDefault("leaves_style", "fancy");
 	settings->setDefault("connected_glass", "false");
 	settings->setDefault("smooth_lighting", "true");
@@ -129,18 +129,18 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("view_bobbing_amount", "0.8");
 	settings->setDefault("fall_bobbing_amount", "0.5");
 	settings->setDefault("enable_3d_clouds", "false");
-	settings->setDefault("cloud_height", "300");
+	settings->setDefault("cloud_height", "500");
 	settings->setDefault("cloud_radius", "26");
 	settings->setDefault("menu_clouds", "false");
 	settings->setDefault("opaque_water", "false");
 	settings->setDefault("console_color", "(0,0,0)");
-	settings->setDefault("console_alpha", "200");
+	settings->setDefault("console_alpha", "255");
 	settings->setDefault("selectionbox_color", "(0,0,0)");
 	settings->setDefault("enable_node_highlighting", "false");
 	settings->setDefault("crosshair_color", "(255,255,255)");
 	settings->setDefault("crosshair_alpha", "255");
-	settings->setDefault("hud_scaling", "1.0");
-	settings->setDefault("gui_scaling", "1.0");
+	settings->setDefault("hud_scaling", "0.8");
+	settings->setDefault("gui_scaling", "0.8");
 	settings->setDefault("gui_scaling_filter", "false");
 	settings->setDefault("gui_scaling_filter_txr2img", "true");
 	settings->setDefault("mouse_sensitivity", "0.2");
@@ -200,14 +200,14 @@ void set_default_settings(Settings *settings)
 
 #if USE_FREETYPE
 	settings->setDefault("freetype", "true");
-	settings->setDefault("font_path", porting::getDataPath("fonts" DIR_DELIM "liberationsans.ttf"));
+	settings->setDefault("font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSans.ttf"));
 	settings->setDefault("font_shadow", "1");
-	settings->setDefault("font_shadow_alpha", "128");
-	settings->setDefault("mono_font_path", porting::getDataPath("fonts" DIR_DELIM "liberationmono.ttf"));
-	settings->setDefault("fallback_font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSansFallbackFull.ttf"));
+	settings->setDefault("font_shadow_alpha", "200");
+	settings->setDefault("mono_font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSans.ttf"));
+	settings->setDefault("fallback_font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSans.ttf"));
 
 	settings->setDefault("fallback_font_shadow", "1");
-	settings->setDefault("fallback_font_shadow_alpha", "128");
+	settings->setDefault("fallback_font_shadow_alpha", "200");
 
 	std::stringstream fontsize;
 	fontsize << TTF_DEFAULT_FONT_SIZE;
