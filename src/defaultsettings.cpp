@@ -136,7 +136,7 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("console_color", "(0,0,0)");
 	settings->setDefault("console_alpha", "255");
 	settings->setDefault("selectionbox_color", "(0,0,0)");
-	settings->setDefault("enable_node_highlighting", "false");
+	settings->setDefault("enable_node_highlighting", "true");
 	settings->setDefault("crosshair_color", "(255,255,255)");
 	settings->setDefault("crosshair_alpha", "255");
 	settings->setDefault("hud_scaling", "0.8");
@@ -174,12 +174,12 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("enable_waving_leaves", "false");
 	settings->setDefault("enable_waving_plants", "false");
 	settings->setDefault("ambient_occlusion_gamma", "2.2");
-	settings->setDefault("enable_shaders", "true");
+	settings->setDefault("enable_shaders", "false");
 	settings->setDefault("repeat_rightclick_time", "0.25");
-	settings->setDefault("enable_particles", "true");
+	settings->setDefault("enable_particles", "false");
 	settings->setDefault("enable_mesh_cache", "false");
 
-	settings->setDefault("enable_minimap", "true");
+	settings->setDefault("enable_minimap", "false");
 	settings->setDefault("minimap_shape_round", "false");
 	settings->setDefault("minimap_double_scan_height", "true");
 
@@ -202,12 +202,12 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("freetype", "true");
 	settings->setDefault("font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSans.ttf"));
 	settings->setDefault("font_shadow", "1");
-	settings->setDefault("font_shadow_alpha", "200");
+	settings->setDefault("font_shadow_alpha", "255");
 	settings->setDefault("mono_font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSans.ttf"));
 	settings->setDefault("fallback_font_path", porting::getDataPath("fonts" DIR_DELIM "DroidSans.ttf"));
 
 	settings->setDefault("fallback_font_shadow", "1");
-	settings->setDefault("fallback_font_shadow_alpha", "200");
+	settings->setDefault("fallback_font_shadow_alpha", "255");
 
 	std::stringstream fontsize;
 	fontsize << TTF_DEFAULT_FONT_SIZE;
