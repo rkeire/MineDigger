@@ -109,7 +109,7 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("fov", "75");
 	settings->setDefault("view_bobbing", "true");
 	settings->setDefault("new_style_water", "false");
-	settings->setDefault("leaves_style", "fancy");
+	settings->setDefault("leaves_style", "opaque");
 	settings->setDefault("connected_glass", "false");
 	settings->setDefault("smooth_lighting", "true");
 	settings->setDefault("display_gamma", "1.8");
@@ -139,8 +139,8 @@ void set_default_settings(Settings *settings)
 	settings->setDefault("enable_node_highlighting", "true");
 	settings->setDefault("crosshair_color", "(255,255,255)");
 	settings->setDefault("crosshair_alpha", "255");
-	settings->setDefault("hud_scaling", "0.8");
-	settings->setDefault("gui_scaling", "0.8");
+	settings->setDefault("hud_scaling", "0.9");
+	settings->setDefault("gui_scaling", "0.9");
 	settings->setDefault("gui_scaling_filter", "false");
 	settings->setDefault("gui_scaling_filter_txr2img", "true");
 	settings->setDefault("mouse_sensitivity", "0.2");
