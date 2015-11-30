@@ -100,18 +100,6 @@ if(NOT CUSTOM_BINDIR STREQUAL "")
 	message(STATUS "Using BINDIR=${BINDIR}")
 endif()
 
-set(CUSTOM_DOCDIR "" CACHE STRING "Directory to install documentation into")
-if(NOT CUSTOM_DOCDIR STREQUAL "")
-	set(DOCDIR "${CUSTOM_DOCDIR}")
-	message(STATUS "Using DOCDIR=${DOCDIR}")
-endif()
-
-set(CUSTOM_MANDIR "" CACHE STRING "Directory to install manpages into")
-if(NOT CUSTOM_MANDIR STREQUAL "")
-	set(MANDIR "${CUSTOM_MANDIR}")
-	message(STATUS "Using MANDIR=${MANDIR}")
-endif()
-
 set(CUSTOM_EXAMPLE_CONF_DIR "" CACHE STRING "Directory to install example config file into")
 if(NOT CUSTOM_EXAMPLE_CONF_DIR STREQUAL "")
 	set(EXAMPLE_CONF_DIR "${CUSTOM_EXAMPLE_CONF_DIR}")
@@ -130,18 +118,10 @@ if(NOT CUSTOM_ICONDIR STREQUAL "")
 	message(STATUS "Using ICONDIR=${ICONDIR}")
 endif()
 
-set(CUSTOM_LOCALEDIR "" CACHE STRING "Directory to install l10n files into")
-if(NOT CUSTOM_LOCALEDIR STREQUAL "")
-	set(LOCALEDIR "${CUSTOM_LOCALEDIR}")
-	message(STATUS "Using LOCALEDIR=${LOCALEDIR}")
-endif()
-
-
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/builtin" DESTINATION "${SHAREDIR}")
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/client" DESTINATION "${SHAREDIR}")
 set(MINETEST_GAME_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/games/minetest_game")
 if(BUILD_CLIENT)
-	#install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/sounds/base/pack" DESTINATION "${SHAREDIR}/sounds/base")
 	install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/textures/base/pack" DESTINATION "${SHAREDIR}/textures/base")
 endif()
 if(RUN_IN_PLACE)
@@ -162,16 +142,10 @@ if(APPLE)
 	install(FILES "misc/Info.plist" DESTINATION "${BUNDLE_PATH}/Contents")
 endif()
 
-
-# Subdirectories
-# Be sure to add all relevant definitions above this
-
 add_subdirectory(src)
 
 
-# CPack
-
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "An InfiniMiner/Minecraft inspired game")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "MineDigger is a voxel game based on Minetest from celeron55. It aims to be a fun game and lightweight. New features will be added on an ongoing basis.")
 set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
