@@ -40,16 +40,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "config.h"
 #include "server.h"
 #include "database.h"
-#include "database-dummy.h"
+//#include "database-dummy.h"
 #include "database-sqlite3.h"
 #include <deque>
 #include <queue>
-#if USE_LEVELDB
-#include "database-leveldb.h"
-#endif
-#if USE_REDIS
-#include "database-redis.h"
-#endif
+//#if USE_LEVELDB
+//#include "database-leveldb.h"
+//#endif
+//#if USE_REDIS
+//#include "database-redis.h"
+//#endif
 
 #define PP(x) "("<<(x).X<<","<<(x).Y<<","<<(x).Z<<")"
 
@@ -192,25 +192,6 @@ MapNode Map::getNodeNoEx(v3s16 p, bool *is_valid_position)
 		*is_valid_position = is_valid_p;
 	return node;
 }
-
-#if 0
-// Deprecated
-// throws InvalidPositionException if not found
-// TODO: Now this is deprecated, getNodeNoEx should be renamed
-MapNode Map::getNode(v3s16 p)
-{
-	v3s16 blockpos = getNodeBlockPos(p);
-	MapBlock *block = getBlockNoCreateNoEx(blockpos);
-	if (block == NULL)
-		throw InvalidPositionException();
-	v3s16 relpos = p - blockpos*MAP_BLOCKSIZE;
-	bool is_valid_position;
-	MapNode node = block->getNodeNoCheck(relpos, &is_valid_position);
-	if (!is_valid_position)
-		throw InvalidPositionException();
-	return node;
-}
-#endif
 
 // throws InvalidPositionException if not found
 void Map::setNode(v3s16 p, MapNode & n)
@@ -3221,18 +3202,18 @@ Database *ServerMap::createDatabase(
 {
 	if (name == "sqlite3")
 		return new Database_SQLite3(savedir);
-	if (name == "dummy")
-		return new Database_Dummy();
-	#if USE_LEVELDB
-	else if (name == "leveldb")
-		return new Database_LevelDB(savedir);
-	#endif
-	#if USE_REDIS
-	else if (name == "redis")
-		return new Database_Redis(conf);
-	#endif
-	else
-		throw BaseException(std::string("Database backend ") + name + " not supported.");
+//	if (name == "dummy")
+//		return new Database_Dummy();
+//	#if USE_LEVELDB
+//	else if (name == "leveldb")
+//		return new Database_LevelDB(savedir);
+//	#endif
+//	#if USE_REDIS
+//	else if (name == "redis")
+//		return new Database_Redis(conf);
+//	#endif
+//	else
+//		throw BaseException(std::string("Database backend ") + name + " not supported.");
 }
 
 void ServerMap::beginSave()

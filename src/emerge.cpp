@@ -34,12 +34,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "log.h"
 #include "map.h"
 #include "mapblock.h"
-#include "mapgen_flat.h"
-#include "mapgen_fractal.h"
-#include "mapgen_v5.h"
+//#include "mapgen_flat.h"
+//#include "mapgen_fractal.h"
+//#include "mapgen_v5.h"
 #include "mapgen_v6.h"
-#include "mapgen_v7.h"
-#include "mapgen_singlenode.h"
+//#include "mapgen_v7.h"
+//#include "mapgen_singlenode.h"
 #include "mg_biome.h"
 #include "mg_ore.h"
 #include "mg_decoration.h"
@@ -103,12 +103,12 @@ private:
 ////
 
 MapgenDesc g_reg_mapgens[] = {
-	{"v5",         new MapgenFactoryV5,         true},
+//	{"v5",         new MapgenFactoryV5,         true},
 	{"v6",         new MapgenFactoryV6,         true},
-	{"v7",         new MapgenFactoryV7,         true},
-	{"flat",       new MapgenFactoryFlat,       false},
-	{"fractal",    new MapgenFactoryFractal,    true},
-	{"singlenode", new MapgenFactorySinglenode, false},
+//	{"v7",         new MapgenFactoryV7,         true},
+//	{"flat",       new MapgenFactoryFlat,       false},
+//	{"fractal",    new MapgenFactoryFractal,    true},
+//	{"singlenode", new MapgenFactorySinglenode, false},
 };
 
 ////

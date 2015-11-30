@@ -22,16 +22,13 @@ set(CMAKE_BUILD_TYPE "${CMAKE_BUILD_TYPE}" CACHE STRING
 	FORCE
 )
 
-
 # Set some random things default to not being visible in the GUI
 mark_as_advanced(EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH)
-
 
 if(NOT (BUILD_CLIENT OR BUILD_SERVER))
 	message(WARNING "Neither BUILD_CLIENT nor BUILD_SERVER is set! Setting BUILD_SERVER=true")
 	set(BUILD_SERVER TRUE)
 endif()
-
 
 option(ENABLE_CURL "Enable cURL support for fetching media" TRUE)
 set(USE_CURL FALSE)
@@ -55,25 +52,24 @@ if(NOT USE_CURL)
 	endif()
 endif()
 
+#option(ENABLE_GETTEXT "Use GetText for internationalization" FALSE)
+#set(USE_GETTEXT FALSE)
 
-option(ENABLE_GETTEXT "Use GetText for internationalization" FALSE)
-set(USE_GETTEXT FALSE)
-
-if(ENABLE_GETTEXT)
-	find_package(GettextLib)
-	if(GETTEXT_FOUND)
-		if(WIN32)
-			message(STATUS "GetText library: ${GETTEXT_LIBRARY}")
-			message(STATUS "GetText DLL: ${GETTEXT_DLL}")
-			message(STATUS "GetText iconv DLL: ${GETTEXT_ICONV_DLL}")
-		endif()
-		set(USE_GETTEXT TRUE)
-		message(STATUS "GetText enabled; locales found: ${GETTEXT_AVAILABLE_LOCALES}")
-	endif(GETTEXT_FOUND)
-else()
-	mark_as_advanced(GETTEXT_ICONV_DLL GETTEXT_INCLUDE_DIR GETTEXT_LIBRARY GETTEXT_MSGFMT)
-	message(STATUS "GetText disabled.")
-endif()
+#if(ENABLE_GETTEXT)
+#	find_package(GettextLib)
+#	if(GETTEXT_FOUND)
+#		if(WIN32)
+#			message(STATUS "GetText library: ${GETTEXT_LIBRARY}")
+#			message(STATUS "GetText DLL: ${GETTEXT_DLL}")
+#			message(STATUS "GetText iconv DLL: ${GETTEXT_ICONV_DLL}")
+#		endif()
+#		set(USE_GETTEXT TRUE)
+#		message(STATUS "GetText enabled; locales found: ${GETTEXT_AVAILABLE_LOCALES}")
+#	endif(GETTEXT_FOUND)
+#else()
+#	mark_as_advanced(GETTEXT_ICONV_DLL GETTEXT_INCLUDE_DIR GETTEXT_LIBRARY GETTEXT_MSGFMT)
+#	message(STATUS "GetText disabled.")
+#endif()
 
 
 option(ENABLE_SOUND "Enable sound" TRUE)
@@ -122,30 +118,9 @@ endif()
 
 
 option(ENABLE_FREETYPE "Enable FreeType2 (TrueType fonts and basic unicode support)" TRUE)
-set(USE_FREETYPE FALSE)
+set(USE_FREETYPE TRUE)
 
 if(ENABLE_FREETYPE)
-##
-## Note: FindFreetype.cmake seems to have been fixed in recent versions of
-## CMake. If issues persist, re-enable this workaround specificially for the
-## failing platforms.
-##
-#	if(UNIX)
-#		include(FindPkgConfig)
-#		if(PKG_CONFIG_FOUND)
-#			pkg_check_modules(FREETYPE QUIET freetype2)
-#			if(FREETYPE_FOUND)
-#				SET(FREETYPE_PKGCONFIG_FOUND TRUE)
-#				SET(FREETYPE_LIBRARY ${FREETYPE_LIBRARIES})
-#				# Because CMake is idiotic
-#				string(REPLACE ";" " " FREETYPE_CFLAGS_STR ${FREETYPE_CFLAGS})
-#				string(REPLACE ";" " " FREETYPE_LDFLAGS_STR ${FREETYPE_LDFLAGS})
-#			endif(FREETYPE_FOUND)
-#		endif(PKG_CONFIG_FOUND)
-#	endif(UNIX)
-#	if(NOT FREETYPE_FOUND)
-#		find_package(Freetype)
-#	endif()
 	find_package(Freetype)
 	if(FREETYPE_FOUND)
 		message(STATUS "Freetype enabled.")
@@ -154,7 +129,6 @@ if(ENABLE_FREETYPE)
 		set(CGUITTFONT_LIBRARY cguittfont)
 	endif()
 endif(ENABLE_FREETYPE)
-
 
 find_package(Lua REQUIRED)
 
@@ -174,55 +148,55 @@ if(ENABLE_CURSES)
 	endif()
 endif(ENABLE_CURSES)
 
-option(ENABLE_LEVELDB "Enable LevelDB backend" TRUE)
-set(USE_LEVELDB FALSE)
+# option(ENABLE_LEVELDB "Enable LevelDB backend" TRUE)
+# set(USE_LEVELDB FALSE)
 
-if(ENABLE_LEVELDB)
-	find_library(LEVELDB_LIBRARY leveldb)
-	find_path(LEVELDB_INCLUDE_DIR db.h PATH_SUFFIXES leveldb)
-	if(LEVELDB_LIBRARY AND LEVELDB_INCLUDE_DIR)
-		set(USE_LEVELDB TRUE)
-		message(STATUS "LevelDB backend enabled.")
-		include_directories(${LEVELDB_INCLUDE_DIR})
-	else()
-		message(STATUS "LevelDB not found!")
-	endif()
-endif(ENABLE_LEVELDB)
+#if(ENABLE_LEVELDB)
+#	find_library(LEVELDB_LIBRARY leveldb)
+#	find_path(LEVELDB_INCLUDE_DIR db.h PATH_SUFFIXES leveldb)
+#	if(LEVELDB_LIBRARY AND LEVELDB_INCLUDE_DIR)
+#		set(USE_LEVELDB TRUE)
+#		message(STATUS "LevelDB backend enabled.")
+#		include_directories(${LEVELDB_INCLUDE_DIR})
+#	else()
+#		message(STATUS "LevelDB not found!")
+#	endif()
+#endif(ENABLE_LEVELDB)
 
 
-OPTION(ENABLE_REDIS "Enable Redis backend" TRUE)
-set(USE_REDIS FALSE)
+#OPTION(ENABLE_REDIS "Enable Redis backend" TRUE)
+#set(USE_REDIS FALSE)
 
-if(ENABLE_REDIS)
-	find_library(REDIS_LIBRARY hiredis)
-	find_path(REDIS_INCLUDE_DIR hiredis.h PATH_SUFFIXES hiredis)
-	if(REDIS_LIBRARY AND REDIS_INCLUDE_DIR)
-		set(USE_REDIS TRUE)
-		message(STATUS "Redis backend enabled.")
-		include_directories(${REDIS_INCLUDE_DIR})
-	else(REDIS_LIBRARY AND REDIS_INCLUDE_DIR)
-		message(STATUS "Redis not found!")
-	endif(REDIS_LIBRARY AND REDIS_INCLUDE_DIR)
-endif(ENABLE_REDIS)
+#if(ENABLE_REDIS)
+#	find_library(REDIS_LIBRARY hiredis)
+#	find_path(REDIS_INCLUDE_DIR hiredis.h PATH_SUFFIXES hiredis)
+#	if(REDIS_LIBRARY AND REDIS_INCLUDE_DIR)
+#		set(USE_REDIS TRUE)
+#		message(STATUS "Redis backend enabled.")
+#		include_directories(${REDIS_INCLUDE_DIR})
+#	else(REDIS_LIBRARY AND REDIS_INCLUDE_DIR)
+#		message(STATUS "Redis not found!")
+#	endif(REDIS_LIBRARY AND REDIS_INCLUDE_DIR)
+#endif(ENABLE_REDIS)
 
 
 find_package(SQLite3 REQUIRED)
 find_package(Json REQUIRED)
 
-OPTION(ENABLE_SPATIAL "Enable SpatialIndex AreaStore backend" TRUE)
-set(USE_SPATIAL FALSE)
+#OPTION(ENABLE_SPATIAL "Enable SpatialIndex AreaStore backend" TRUE)
+#set(USE_SPATIAL FALSE)
 
-if(ENABLE_SPATIAL)
-	find_library(SPATIAL_LIBRARY spatialindex)
-	find_path(SPATIAL_INCLUDE_DIR spatialindex/SpatialIndex.h)
-	if(SPATIAL_LIBRARY AND SPATIAL_INCLUDE_DIR)
-		set(USE_SPATIAL TRUE)
-		message(STATUS "SpatialIndex AreaStore backend enabled.")
-		include_directories(${SPATIAL_INCLUDE_DIR})
-	else(SPATIAL_LIBRARY AND SPATIAL_INCLUDE_DIR)
-		message(STATUS "SpatialIndex not found!")
-	endif(SPATIAL_LIBRARY AND SPATIAL_INCLUDE_DIR)
-endif(ENABLE_SPATIAL)
+#if(ENABLE_SPATIAL)
+#	find_library(SPATIAL_LIBRARY spatialindex)
+#	find_path(SPATIAL_INCLUDE_DIR spatialindex/SpatialIndex.h)
+#	if(SPATIAL_LIBRARY AND SPATIAL_INCLUDE_DIR)
+#		set(USE_SPATIAL TRUE)
+#		message(STATUS "SpatialIndex AreaStore backend enabled.")
+#		include_directories(${SPATIAL_INCLUDE_DIR})
+#	else(SPATIAL_LIBRARY AND SPATIAL_INCLUDE_DIR)
+#		message(STATUS "SpatialIndex not found!")
+#	endif(SPATIAL_LIBRARY AND SPATIAL_INCLUDE_DIR)
+#endif(ENABLE_SPATIAL)
 
 
 if(NOT MSVC)
@@ -345,9 +319,9 @@ set(common_SRCS
 	content_sao.cpp
 	convert_json.cpp
 	craftdef.cpp
-	database-dummy.cpp
-	database-leveldb.cpp
-	database-redis.cpp
+#	database-dummy.cpp
+#	database-leveldb.cpp
+#	database-redis.cpp
 	database-sqlite3.cpp
 	database.cpp
 	debug.cpp
@@ -367,12 +341,12 @@ set(common_SRCS
 	map.cpp
 	mapblock.cpp
 	mapgen.cpp
-	mapgen_flat.cpp
-	mapgen_fractal.cpp
-	mapgen_singlenode.cpp
-	mapgen_v5.cpp
+#	mapgen_flat.cpp
+#	mapgen_fractal.cpp
+#	mapgen_singlenode.cpp
+#	mapgen_v5.cpp
 	mapgen_v6.cpp
-	mapgen_v7.cpp
+#	mapgen_v7.cpp
 	mapnode.cpp
 	mapsector.cpp
 	mg_biome.cpp
@@ -577,15 +551,15 @@ if(BUILD_CLIENT)
 	if (USE_CURSES)
 		target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
 	endif()
-	if (USE_LEVELDB)
-		target_link_libraries(${PROJECT_NAME} ${LEVELDB_LIBRARY})
-	endif()
-	if (USE_REDIS)
-		target_link_libraries(${PROJECT_NAME} ${REDIS_LIBRARY})
-	endif()
-	if (USE_SPATIAL)
-		target_link_libraries(${PROJECT_NAME} ${SPATIAL_LIBRARY})
-	endif()
+#	if (USE_LEVELDB)
+#		target_link_libraries(${PROJECT_NAME} ${LEVELDB_LIBRARY})
+#	endif()
+#	if (USE_REDIS)
+#		target_link_libraries(${PROJECT_NAME} ${REDIS_LIBRARY})
+#	endif()
+#	if (USE_SPATIAL)
+#		target_link_libraries(${PROJECT_NAME} ${SPATIAL_LIBRARY})
+#	endif()
 endif(BUILD_CLIENT)
 
 
@@ -607,15 +581,15 @@ if(BUILD_SERVER)
 	if (USE_CURSES)
 		target_link_libraries(${PROJECT_NAME}server ${CURSES_LIBRARIES})
 	endif()
-	if (USE_LEVELDB)
-		target_link_libraries(${PROJECT_NAME}server ${LEVELDB_LIBRARY})
-	endif()
-	if (USE_REDIS)
-		target_link_libraries(${PROJECT_NAME}server ${REDIS_LIBRARY})
-	endif()
-	if (USE_SPATIAL)
-		target_link_libraries(${PROJECT_NAME}server ${SPATIAL_LIBRARY})
-	endif()
+#	if (USE_LEVELDB)
+#		target_link_libraries(${PROJECT_NAME}server ${LEVELDB_LIBRARY})
+#	endif()
+#	if (USE_REDIS)
+#		target_link_libraries(${PROJECT_NAME}server ${REDIS_LIBRARY})
+#	endif()
+#	if (USE_SPATIAL)
+#		target_link_libraries(${PROJECT_NAME}server ${SPATIAL_LIBRARY})
+#	endif()
 	if(USE_CURL)
 		target_link_libraries(
 			${PROJECT_NAME}server
@@ -714,9 +688,9 @@ if(WIN32)
 	if(SQLITE3_DLL)
 		install(FILES ${SQLITE3_DLL} DESTINATION ${BINDIR})
 	endif()
-	if(LEVELDB_DLL)
-		install(FILES ${LEVELDB_DLL} DESTINATION ${BINDIR})
-	endif()
+#	if(LEVELDB_DLL)
+#		install(FILES ${LEVELDB_DLL} DESTINATION ${BINDIR})
+#	endif()
 endif()
 
 if(BUILD_CLIENT)
@@ -735,14 +709,14 @@ if(BUILD_CLIENT)
 		" COMPONENT Runtime)
 	endif()
 
-	if(USE_GETTEXT)
-		foreach(LOCALE ${GETTEXT_AVAILABLE_LOCALES})
-			set_mo_paths(MO_BUILD_PATH MO_DEST_PATH ${LOCALE})
-			set(MO_BUILD_PATH "${MO_BUILD_PATH}/${PROJECT_NAME}.mo")
-			install(FILES ${MO_BUILD_PATH} DESTINATION ${MO_DEST_PATH})
-		endforeach()
-	endif()
-
+#	if(USE_GETTEXT)
+#		foreach(LOCALE ${GETTEXT_AVAILABLE_LOCALES})
+#			set_mo_paths(MO_BUILD_PATH MO_DEST_PATH ${LOCALE})
+#			set(MO_BUILD_PATH "${MO_BUILD_PATH}/${PROJECT_NAME}.mo")
+#			install(FILES ${MO_BUILD_PATH} DESTINATION ${MO_DEST_PATH})
+#		endforeach()
+#	endif()
+#
 	if(WIN32)
 		if(DEFINED IRRLICHT_DLL)
 			install(FILES ${IRRLICHT_DLL} DESTINATION ${BINDIR})

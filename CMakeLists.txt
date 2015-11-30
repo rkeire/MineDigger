@@ -19,7 +19,7 @@ set(VERSION_EXTRA "" CACHE STRING "Stuff to append to version string")
 # Change to false for releases
 set(DEVELOPMENT_BUILD FALSE)
 
-set(VERSION_STRING "${VERSION_STRING}-dev")
+set(VERSION_STRING "${VERSION_STRING}-Unstable")
 
 message(STATUS "*** Will build version ${VERSION_STRING} ***")
 
