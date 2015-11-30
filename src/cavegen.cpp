@@ -20,14 +20,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "util/numeric.h"
 #include "map.h"
 #include "mapgen.h"
-#include "mapgen_v5.h"
+//#include "mapgen_v5.h"
 #include "mapgen_v6.h"
-#include "mapgen_v7.h"
+//#include "mapgen_v7.h"
 #include "cavegen.h"
 
 NoiseParams nparams_caveliquids(0, 1, v3f(150.0, 150.0, 150.0), 776, 3, 0.6, 2.0);
 
-
+/*
 ///////////////////////////////////////// Caves V5
 
 
@@ -272,6 +272,7 @@ void CaveV5::carveRoute(v3f vec, float f, bool randomize_xz)
 	}
 }
 
+*/
 
 ///////////////////////////////////////// Caves V6
 
@@ -568,7 +569,7 @@ void CaveV6::carveRoute(v3f vec, float f, bool randomize_xz, bool tunnel_above_g
 
 ///////////////////////////////////////// Caves V7
 
-
+/*
 CaveV7::CaveV7(MapgenV7 *mg, PseudoRandom *ps)
 {
 	this->mg             = mg;
@@ -592,7 +593,7 @@ CaveV7::CaveV7(MapgenV7 *mg, PseudoRandom *ps)
 	large_cave_is_flat = (ps->range(0, 1) == 0);
 }
 
-
+//--
 void CaveV7::makeCave(v3s16 nmin, v3s16 nmax, int max_stone_height)
 {
 	node_min = nmin;
@@ -809,3 +810,4 @@ void CaveV7::carveRoute(v3f vec, float f, bool randomize_xz)
 		}
 	}
 }
+*/
