@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 bool getGameMinetestConfig(const std::string &game_path, Settings &conf)
 {
-	std::string conf_path = game_path + DIR_DELIM + "minetest.conf";
+	std::string conf_path = game_path + DIR_DELIM + "MineDigger.conf";
 	return conf.readConfigFile(conf_path.c_str());
 }
 
@@ -188,7 +188,7 @@ std::vector<SubgameSpec> getAvailableGames()
 	return specs;
 }
 
-#define LEGACY_GAMEID "minetest"
+#define LEGACY_GAMEID "MineDigger"
 
 bool getWorldExists(const std::string &world_path)
 {
